@@ -1,16 +1,53 @@
 module Spec where
 import PdePreludat
+    ( otherwise,
+      Monad((>>)),
+      Ord((<)),
+      Show(show),
+      Applicative(pure),
+      Bool(True, False),
+      IO,
+      fromInteger,
+      fromRational,
+      implementame,
+      ($),
+      (++),
+      (-),
+      negate,
+      Number )
 import Library
+    ( siguiente,
+      esPositivo,
+      inversa,
+      celsiusAFahrenheit,
+      fahrenheitACelsius,
+      haceFrioCelsius,
+      haceFrioFahrenheit,
+      perimetroCirculo,
+      perimetroCuadrado,
+      superficieCuadrado,
+      superficieCubo,
+      superficieCilindro )
 import Test.Hspec
+    ( hspec,
+      describe,
+      focus,
+      it,
+      pendingWith,
+      expectationFailure,
+      shouldBe,
+      SpecWith,
+      Expectation )
 
 correrTests :: IO ()
 correrTests = hspec $ do
 -- Si alguna suit de tests tiene "focus" adelante, solo se va a correr esa.
 -- Asi que, para ir probando los puntos, agreguen focus a los demas, o saquenselo a todos:
-  focus suiteDeTestsDeParteI
-  suiteDeTestsDeParteIBonus
+  suiteDeTestsDeParteI
+  focus suiteDeTestsDeParteIBonus
   suiteDeTestsDeParteII
   
+suiteDeTestsDeParteI :: SpecWith ()
 suiteDeTestsDeParteI =
   describe "Parte I: Numeros" $ do
 
@@ -35,6 +72,7 @@ suiteDeTestsDeParteI =
       it "es falso para el 0" $ do
         esPositivo 0 `shouldBe` False
 
+suiteDeTestsDeParteIBonus :: SpecWith ()
 suiteDeTestsDeParteIBonus =
   describe "Parte 1 Bonus" $ do
     it "el perimetro de un circulo es 2 * pi * radio" $ do
@@ -48,6 +86,7 @@ suiteDeTestsDeParteIBonus =
     it "la superficie de un cilindro es el area de las tapas por el area de la pared del cilindro" $ do
       superficieCilindro 2 4 `shouldBeEqualUpTo2Decimals` 75.39822
 
+suiteDeTestsDeParteII :: SpecWith ()
 suiteDeTestsDeParteII =
   describe "Parte 2: Temperaturas" $ do
     describe "celsiusAFahrenheit" $ do
