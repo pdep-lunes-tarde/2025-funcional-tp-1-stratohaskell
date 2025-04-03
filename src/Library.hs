@@ -1,6 +1,6 @@
 module Library where
 import PdePreludat
-    ( Ord((>)), Bool, fromInteger, implementame, (+), (/), Number, (*), pi )
+    ( Ord((>), (<=)), Bool, fromInteger, implementame, (+), (-), (/), Number, (*), pi, fromRational )
 import GHC.Base (Float)
 import Text.Printf (FieldFormatter)
 
@@ -21,17 +21,18 @@ inversa numero= 1/numero
 -- 2. Temperaturas
 
 celsiusAFahrenheit :: Number -> Number
-celsiusAFahrenheit celsius = celsius * (9/5) + 32
+celsiusAFahrenheit celsius = celsius * 1.8 + 32
 
 fahrenheitACelsius :: Number -> Number
-fahrenheitACelsius fahrenheit = (fahrenheit - 32)/(9/5)
+fahrenheitACelsius fahrenheit = (fahrenheit - 32)/1.8
 
 -- escriban el tipo de esta función
 haceFrioCelsius :: Number -> Bool
-haceFrioCelsius grados = grados  8 
+haceFrioCelsius grados = grados <= 8 
 
 -- escriban el tipo de esta función
-haceFrioFahrenheit grados = implementame
+haceFrioFahrenheit :: Number -> Bool
+haceFrioFahrenheit grados = fahrenheitACelsius grados <= 8
 
 -- 1.5 Bonus OPCIONAL
 perimetroCirculo :: Number -> Number
@@ -39,11 +40,12 @@ perimetroCirculo radio = 2 * radio* pi
 
 perimetroCuadrado :: Number -> Number
 perimetroCuadrado lado = 4*lado
+
 superficieCuadrado :: Number -> Number
 superficieCuadrado lado = lado*lado
 
 superficieCubo :: Number -> Number
-superficieCubo lado = 6*lado*lado 
+superficieCubo lado = 6*superficieCuadrado lado  
 
 superficieCilindro :: Number -> Number -> Number
-superficieCilindro radio altura = 2*pi*radio*radio+2*pi*radio*altura
+superficieCilindro radio altura = perimetroCirculo radio*radio+perimetroCirculo radio*altura
