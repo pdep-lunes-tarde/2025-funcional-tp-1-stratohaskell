@@ -99,10 +99,10 @@ suiteDeTestsDeParteII =
 
     describe "fahrenheitACelsius y celsiusAFahrenheit son inversas" $ do
       it "convertir un valor en celsius a fahrenheit y luego volver a convertir a celsius retorna el valor original" $ do
-        pendingWith "Escriban el cuerpo de un test en el que se chequee que si convierto un numero a fahrenheit y luego convierto el resultado a celsius obtengo el valor original"
+        fahrenheitACelsius (celsiusAFahrenheit 20) `shouldBe` 20
         
       it "convertir un valor en fahrenheit a celsius y luego volver a convertir a fahrenheit retorna el valor original" $ do
-        pendingWith "Lo mismo que el test anterior pero al reves"
+        celsiusAFahrenheit (fahrenheitACelsius 20) `shouldBe` 20
       
 
     describe "haceFrioCelsius" $ do
