@@ -2,14 +2,14 @@
 
 ## Grupo, nombre y legajo de integrantes
 
-- Nombre del grupo: **Completar**
+- Nombre del grupo: StratoHaskell
 
 Integrantes:
-- Legajo: **Completar** 
-- Nombre: **Completar**
+- Legajo: 220-774-6
+- Nombre: Agustín Arias
 
-- Legajo: **Completar** 
-- Nombre: **Completar**
+- Legajo: 2208842 
+- Nombre: Lara Sofia Simes
 
 
 ## Objetivos

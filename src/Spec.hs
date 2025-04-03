@@ -1,16 +1,53 @@
 module Spec where
 import PdePreludat
+    ( otherwise,
+      Monad((>>)),
+      Ord((<)),
+      Show(show),
+      Applicative(pure),
+      Bool(True, False),
+      IO,
+      fromInteger,
+      fromRational,
+      implementame,
+      ($),
+      (++),
+      (-),
+      negate,
+      Number )
 import Library
+    ( siguiente,
+      esPositivo,
+      inversa,
+      celsiusAFahrenheit,
+      fahrenheitACelsius,
+      haceFrioCelsius,
+      haceFrioFahrenheit,
+      perimetroCirculo,
+      perimetroCuadrado,
+      superficieCuadrado,
+      superficieCubo,
+      superficieCilindro )
 import Test.Hspec
+    ( hspec,
+      describe,
+      focus,
+      it,
+      pendingWith,
+      expectationFailure,
+      shouldBe,
+      SpecWith,
+      Expectation )
 
 correrTests :: IO ()
 correrTests = hspec $ do
 -- Si alguna suit de tests tiene "focus" adelante, solo se va a correr esa.
 -- Asi que, para ir probando los puntos, agreguen focus a los demas, o saquenselo a todos:
-  focus suiteDeTestsDeParteI
+  suiteDeTestsDeParteI
   suiteDeTestsDeParteIBonus
   suiteDeTestsDeParteII
   
+suiteDeTestsDeParteI :: SpecWith ()
 suiteDeTestsDeParteI =
   describe "Parte I: Numeros" $ do
 
@@ -35,6 +72,7 @@ suiteDeTestsDeParteI =
       it "es falso para el 0" $ do
         esPositivo 0 `shouldBe` False
 
+suiteDeTestsDeParteIBonus :: SpecWith ()
 suiteDeTestsDeParteIBonus =
   describe "Parte 1 Bonus" $ do
     it "el perimetro de un circulo es 2 * pi * radio" $ do
@@ -48,45 +86,46 @@ suiteDeTestsDeParteIBonus =
     it "la superficie de un cilindro es el area de las tapas por el area de la pared del cilindro" $ do
       superficieCilindro 2 4 `shouldBeEqualUpTo2Decimals` 75.39822
 
+suiteDeTestsDeParteII :: SpecWith ()
 suiteDeTestsDeParteII =
   describe "Parte 2: Temperaturas" $ do
     describe "celsiusAFahrenheit" $ do
       it "pasa una temperatura de celsius a fahrenheit" $ do
-        pendingWith "Reemplacen los implementame con valores de prueba que ustedes elijan. Luego borren esta linea"
-        celsiusAFahrenheit implementame `shouldBeEqualUpTo2Decimals` implementame
+        celsiusAFahrenheit 14 `shouldBeEqualUpTo2Decimals` 57.2
 
     describe "fahrenheitACelsius" $ do
       it "pasa una temperatura de fahrenheit a celsius" $ do
-        pendingWith "reemplacen los 'implementame' por valores de prueba que ustedes elijan, luego borren esta linea"
-        fahrenheitACelsius implementame `shouldBeEqualUpTo2Decimals` implementame
+        fahrenheitACelsius 63 `shouldBeEqualUpTo2Decimals` 17.22
 
     describe "fahrenheitACelsius y celsiusAFahrenheit son inversas" $ do
       it "convertir un valor en celsius a fahrenheit y luego volver a convertir a celsius retorna el valor original" $ do
-        pendingWith "Escriban el cuerpo de un test en el que se chequee que si convierto un numero a fahrenheit y luego convierto el resultado a celsius obtengo el valor original"
+        fahrenheitACelsius (celsiusAFahrenheit 20) `shouldBe` 20
+        
       it "convertir un valor en fahrenheit a celsius y luego volver a convertir a fahrenheit retorna el valor original" $ do
-        pendingWith "Lo mismo que el test anterior pero al reves"
+        celsiusAFahrenheit (fahrenheitACelsius 20) `shouldBe` 20
       
 
     describe "haceFrioCelsius" $ do
       -- Pista: hay 3 casos a testear
       it "Es verdad cuando hacen menos de 8 grados celsius" $ do
-        pendingWith "Escribir el cuerpo de este test"
+        haceFrioCelsius 4 `shouldBe` True
         
-      it "" $ do
-        pendingWith "Escribir un nombre para este test"
+      it "Es verdad cuando hace 8 grados celsius" $ do
         haceFrioCelsius 8 `shouldBe` True
-      it "" $ do
-        pendingWith "Pensar un caso para este test, escribir el nombre y el cuerpo del mismo"
 
+      it "Es Falso cuando hacen mas de 8 grados celsius" $ do
+        haceFrioCelsius 10 `shouldBe` False 
+      
     describe "haceFrioFahrenheit" $ do
       -- Pista: hay 3 casos a testear
-      it "" $ do
-        pendingWith "Pensar un caso para este test, escribir el nombre y el cuerpo del mismo"
-      it "" $ do
-        pendingWith "Escribir un nombre para este test"
+      it "Es verdad cuando hacen menos de 46.4 grados fahrenheit" $ do
+        haceFrioFahrenheit 45 `shouldBe` True
+
+      it "Es verdad cuando hace 46.4 grados fahrenheit" $ do
         haceFrioFahrenheit 46.4 `shouldBe` True
-      it "" $ do
-        pendingWith "Pensar un caso para este test, escribir el nombre y el cuerpo del mismo"
+
+      it "Es Falso cuando hacen mas de 46.4 grados fahrenheit" $ do
+        haceFrioFahrenheit 47 `shouldBe` False
 
 escribiTestsParaEstaFuncion :: SpecWith ()
 escribiTestsParaEstaFuncion = pure ()
