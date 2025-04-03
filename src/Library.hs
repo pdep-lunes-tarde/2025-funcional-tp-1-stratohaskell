@@ -4,6 +4,7 @@ import PdePreludat
 import GHC.Base (Float)
 import Text.Printf (FieldFormatter)
 
+
 -- 1. Numeros
 
 siguiente :: Number -> Number
@@ -16,21 +17,23 @@ esPositivo numero = numero>0
 inversa :: Number -> Number
 inversa numero= 1/numero
 
+
 -- 2. Temperaturas
 
 celsiusAFahrenheit :: Number -> Number
-celsiusAFahrenheit celsius = implementame
+celsiusAFahrenheit celsius = celsius * (9/5) + 32
 
 fahrenheitACelsius :: Number -> Number
-fahrenheitACelsius fahrenheit = implementame
+fahrenheitACelsius fahrenheit = (fahrenheit - 32)/(9/5)
 
 -- escriban el tipo de esta función
-haceFrioCelsius grados = implementame
+haceFrioCelsius :: Number -> Bool
+haceFrioCelsius grados = grados  8 
 
 -- escriban el tipo de esta función
 haceFrioFahrenheit grados = implementame
 
--- 2.5 Bonus OPCIONAL
+-- 1.5 Bonus OPCIONAL
 perimetroCirculo :: Number -> Number
 perimetroCirculo radio = 2 * radio* pi
 
@@ -40,7 +43,7 @@ superficieCuadrado :: Number -> Number
 superficieCuadrado lado = lado*lado
 
 superficieCubo :: Number -> Number
-superficieCubo lado = 6*lado*lado
+superficieCubo lado = 6*lado*lado 
 
 superficieCilindro :: Number -> Number -> Number
 superficieCilindro radio altura = 2*pi*radio*radio+2*pi*radio*altura
